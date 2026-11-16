@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jsonplaceholder/model/todos.dart';
 
 class TodoWidget extends StatelessWidget {
-  const TodoWidget({super.key});
+  final Todos todo;
+  const TodoWidget({super.key, required this.todo});
 
   @override
   Widget build(BuildContext context) {

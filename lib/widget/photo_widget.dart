@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jsonplaceholder/model/photos.dart';
 
 class PhotoWidget extends StatelessWidget {
-  const PhotoWidget({super.key});
+  final Photos photo;
+  const PhotoWidget({super.key, required this.photo});
 
   @override
   Widget build(BuildContext context) {

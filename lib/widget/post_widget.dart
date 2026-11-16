@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:jsonplaceholder/model/posts.dart';
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({super.key});
+  final Posts posts;
+  const PostWidget({super.key, required this.posts});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Card(
+      child: Column(
+        children: [
+          Row(children: [Text('${posts.id}'), Text('${posts.userId}')]),
+          Text('Post Title'),
+        ],
+      ),
+    );
   }
 }

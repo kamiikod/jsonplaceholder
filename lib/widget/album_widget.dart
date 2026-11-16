@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jsonplaceholder/model/albums.dart';
 
 class AlbumWidget extends StatelessWidget {
-  const AlbumWidget({super.key});
+  final Albums album;
+  const AlbumWidget({super.key, required this.album});
 
   @override
   Widget build(BuildContext context) {
