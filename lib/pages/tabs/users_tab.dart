@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jsonplaceholder/model/users.dart';
 
 class UsersTab extends StatelessWidget {
   const UsersTab({super.key});

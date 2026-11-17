@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jsonplaceholder/model/posts.dart';
 import 'package:jsonplaceholder/service/api_service.dart';
 import 'package:jsonplaceholder/widget/async_data_view.dart';
 import 'package:jsonplaceholder/widget/post_widget.dart';

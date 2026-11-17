@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jsonplaceholder/model/comments.dart';
 
 class CommentsTab extends StatelessWidget {
   const CommentsTab({super.key});
