@@ -8,8 +8,8 @@ class PostsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AsyncDataView(onFetch: ApiService.fetchPosts, itemBuilder: (context, posts, index){
-      return PostWidget(posts: posts);
+    return AsyncDataView(onFetch: ApiService.fetchPosts, itemBuilder: (context, post, index){
+      return PostWidget(posts: post);
     }, title: 'Posts');
   }
 }

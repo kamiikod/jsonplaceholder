@@ -7,6 +7,13 @@ class TodoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Card(
+      child: Column(
+        children: [
+          Row(children: [Text('${todo.id}'), Text('${todo.userId}')]),
+          Text('Todo Title'),
+        ],
+      ),
+    );
   }
 }

@@ -80,7 +80,16 @@ class _AsyncDataViewState<T> extends State<AsyncDataView<T>> {
         // 4. Success state with pull refresh
         return RefreshIndicator(onRefresh: _handleRefresh, child: Column(
           children: [
-            Container(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('${widget.title} (${items.length})', style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text('Tarik ke bawah untuk refresh')
+                ],
+              ),
+            ),
             Expanded(child: ListView.builder(
               itemBuilder: (context, index) {
                 return widget.itemBuilder(context, items[index], index);

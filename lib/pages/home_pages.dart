@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jsonplaceholder/pages/tabs/albums_tab.dart';
+import 'package:jsonplaceholder/pages/tabs/comments_tab.dart';
+import 'package:jsonplaceholder/pages/tabs/photos_tab.dart';
 import 'package:jsonplaceholder/pages/tabs/posts_tab.dart';
+import 'package:jsonplaceholder/pages/tabs/todos_tab.dart';
+import 'package:jsonplaceholder/pages/tabs/users_tab.dart';
 
 
 class HomePages extends StatelessWidget {
@@ -14,18 +19,23 @@ class HomePages extends StatelessWidget {
           title: Text('JSONPlaceholder API'),
           bottom: TabBar(
             tabs: [
-              Tab(text: 'Posts'),
-              Tab(text: 'Comments'),
-              Tab(text: 'Albums'),
-              Tab(text: 'Photos'),
-              Tab(text: 'Todos'),
-              Tab(text: 'Users'),
+              Tab(text: 'Posts', icon: Icon(Icons.article),),
+              Tab(text: 'Comments', icon: Icon(Icons.comment),),
+              Tab(text: 'Albums', icon: Icon(Icons.photo_album),),
+              Tab(text: 'Photos', icon: Icon(Icons.photo),),
+              Tab(text: 'Todos', icon: Icon(Icons.check_circle),),
+              Tab(text: 'Users', icon: Icon(Icons.person),),
             ],
           ),
         ),
 
         body: TabBarView(children: [
           PostsTab(),
+          CommentsTab(),
+          AlbumsTab(),
+          PhotosTab(),
+          TodosTab(),
+          UsersTab(),
         ],),
       ),
     );

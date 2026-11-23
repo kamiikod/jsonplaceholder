@@ -63,6 +63,23 @@ class ApiService {
     }
   }
 
+  static Future<List<Photos>> fetchAlbumPhotos(int albumId) async {
+    final uri = Uri.parse(
+      '${baseUrl}photos',
+    ).replace(queryParameters: {'albumId': albumId.toString()});
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data
+          .map((json) => Photos.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } else {
+      throw Exception(
+        'Gagal memuat foto album (HTTP ${response.statusCode})',
+      );
+    }
+  }
+
   // endpoints todos
   static Future<List<Todos>> fetchTodos() async {
     final response = await http.get(Uri.parse('$baseUrl/todos'));
