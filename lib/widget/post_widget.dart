@@ -3,59 +3,98 @@ import 'package:jsonplaceholder/model/posts.dart';
 
 class PostWidget extends StatelessWidget {
   final Posts posts;
-  const PostWidget({super.key, required this.posts});
+  final VoidCallback? onTap;
+
+  const PostWidget({super.key, required this.posts, this.onTap});
+
+  // Judul dari API huruf kecil semua, jadi kita kapitalisasi huruf pertama.
+  String _capitalize(String text) {
+    if (text.isEmpty) return text;
+    return text[0].toUpperCase() + text.substring(1);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Card(
-      margin: EdgeInsets.only(left: 8, right: 8, top: 8),
-      elevation: 1.5,
-      color: Colors.grey[200],
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(
-                    color: theme.primaryColor,
-                    borderRadius: BorderRadius.circular(6.0),
-                  ),
-                  child: Text(
-                    '${posts.id}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 12,
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      elevation: 0,
+      color: colorScheme.surfaceContainerHighest,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: colorScheme.outlineVariant),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header: nomor post + user
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: colorScheme.primary,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      '#${posts.id}',
+                      style: textTheme.labelMedium?.copyWith(
+                        color: colorScheme.onPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(width: 10),
-                Text(
-                  'User ID: ${posts.userId}',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ],
-            ),
-            SizedBox(height: 10,),
-            Text(
-              'Post Title: ${posts.title}',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                fontSize: 18,
+                  const SizedBox(width: 10),
+                  Icon(
+                    Icons.person_outline,
+                    size: 18,
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'User ${posts.userId}',
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Text(
-              'Post Body: ${posts.body}',
-              style: TextStyle(color: Colors.black),
-              textAlign: TextAlign.justify,
-            ),
-          ],
+              const SizedBox(height: 12),
+
+              // Judul
+              Text(
+                _capitalize(posts.title),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+              const SizedBox(height: 6),
+
+              // Isi
+              Text(
+                _capitalize(posts.body),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                  height: 1.4,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
